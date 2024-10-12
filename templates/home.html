@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <h1>This is home</h1>
+    <hr>
+    <a href="login">Login</a>
+    <a href="{% url "login" %}">Register</a>
+    <a href="{% url "logout" %}">logout</a>
+    <br>
+    <hr>
+    <h1>Upload a File</h1>
+    <h1>Welcome, {{ request.user.username }}</h1>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="fileinput">Upload a file:</label>
+        <input type="file" name="fileinput" id="fileinput">
+        <button type="submit">Upload</button>
+    </form>
+    <a href="{% url 'user_files' %}">View your uploaded files</a>
+    </form>
+</body>
+</html>
